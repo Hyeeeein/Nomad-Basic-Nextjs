@@ -1,12 +1,11 @@
 import Movie from "../../components/movie";
 import styles from "../../styles/home.module.css";
+import { API_URL } from "../constants";
 
 // 특정 path 에서만 보여줘야 할 경우
 export const metadata = {
   title: "home", // use client 에서는 사용x
 };
-
-export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovies() {
   // 클라이언트에서 보여주는 게 아니라 백엔드에서 실행되는 것이기 때문에 화면에는 보이지 않지만 탭에서 로딩이 돌고 있음
