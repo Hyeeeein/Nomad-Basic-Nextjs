@@ -1,10 +1,9 @@
-import Link from "next/link";
-import styles from "../../styles/home.module.css";
 import Movie from "../../components/movie";
+import styles from "../../styles/home.module.css";
 
 // 특정 path 에서만 보여줘야 할 경우
 export const metadata = {
-  title: "home | next page", // use client 에서는 사용x
+  title: "home", // use client 에서는 사용x
 };
 
 export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
