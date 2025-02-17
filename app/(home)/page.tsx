@@ -1,4 +1,6 @@
 import Link from "next/link";
+import styles from "../../styles/home.module.css";
+import Movie from "../../components/movie";
 
 // 특정 path 에서만 보여줘야 할 경우
 export const metadata = {
@@ -19,11 +21,14 @@ async function getMovies() {
 export default async function Tomato() {
   const movies = await getMovies();
   return (
-    <div>
+    <div className={styles.container}>
       {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
+        <Movie
+          key={movie.id}
+          id={movie.id}
+          poster_path={movie.poster_path}
+          title={movie.title}
+        />
       ))}
     </div>
   );
