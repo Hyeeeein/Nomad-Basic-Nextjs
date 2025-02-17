@@ -2,9 +2,7 @@ import { Suspense } from "react";
 import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
 
-interface IParams {
-  params: { id: string };
-}
+type IParams = Promise<{ id: string }>;
 
 // async function getMovie(id: string) {
 //   console.log(`Fetching movies: ${Date.now()}`);
@@ -20,19 +18,24 @@ interface IParams {
 // }
 
 // 동적으로 메타데이터 세팅
-export async function generateMetadata({ params: { id } }: IParams) {
+export async function generateMetadata(props: { params: IParams }) {
+  const params = await props.params;
+  const id = params.id;
+
   const movie = await getMovie(id);
   return {
     title: movie.title,
   };
 }
 
-export default async function MovieDetail({ params: { id } }: IParams) {
+export default async function MovieDetailPage(props: { params: IParams }) {
   // console.log("===========");
   // console.log("start fetching");
   // const [movie, videos] = await Promise.all([getMovie(id), getVideos(id)]); // 병렬, 배열 안의 모든 작업이 똑같은 시간에 시작한다
   // console.log("end fetching");
   // return <h1>{movie.title}</h1>;
+  const params = await props.params;
+  const id = params.id;
 
   return (
     <div>
